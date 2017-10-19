@@ -8,7 +8,8 @@ Link [http://websystique.com/spring-security/secure-spring-rest-api-using-oauth2
 ```shell
 curl -H "Authorization:Basic bXktdHJ1c3RlZC1jbGllbnQ6c2VjcmV0" \
 -H "Accept:application/json" \
--X POST "http://localhost:8080/SpringSecurityOAuth2Example/oauth/token?grant_type=password&username=bill&password=abc123"
+-X POST "http://localhost:8080/SpringSecurityOAuth2Example/oauth/token\
+?grant_type=password&username=bill&password=abc123"
 
 ```
 Credential for basic authentication
