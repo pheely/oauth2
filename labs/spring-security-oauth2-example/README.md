@@ -12,10 +12,7 @@ curl -H "Authorization:Basic bXktdHJ1c3RlZC1jbGllbnQ6c2VjcmV0" \
 ?grant_type=password&username=bill&password=abc123"
 
 ```
-Credential for basic authentication
-
-Username: my-trusted-client
-Password: secret
+Credential for basic authentication: Username: my-trusted-client; Password: secret
 
 Response should be something like:
 ```
@@ -30,64 +27,71 @@ Response should be something like:
 
 ### 2. Call Rest service
 ```shell
-curl -X GET "http://localhost:8080/SpringSecurityOAuth2Example/user/?access_token=6e956e92-4246-4bf4-8807-a7f79adc91ed"
+curl -H "Accept:application/json" \
+-X GET "http://localhost:8080/SpringSecurityOAuth2Example/user/\
+?access_token=6e956e92-4246-4bf4-8807-a7f79adc91ed"
 ```
 
 Response:
 ```
-<List xmlns="">
-    <item>
-        <id>1</id>
-        <name>Sam</name>
-        <age>30</age>
-        <salary>70000.0</salary>
-    </item>
-    <item>
-        <id>2</id>
-        <name>Tom</name>
-        <age>40</age>
-        <salary>50000.0</salary>
-    </item>
-    <item>
-        <id>3</id>
-        <name>Jerome</name>
-        <age>45</age>
-        <salary>30000.0</salary>
-    </item>
-    <item>
-        <id>4</id>
-        <name>Silvia</name>
-        <age>50</age>
-        <salary>40000.0</salary>
-    </item>
-</List>
+[
+    {
+        "id": 1,
+        "name": "Sam",
+        "age": 30,
+        "salary": 70000
+    },
+    {
+        "id": 2,
+        "name": "Tom",
+        "age": 40,
+        "salary": 50000
+    },
+    {
+        "id": 3,
+        "name": "Jerome",
+        "age": 45,
+        "salary": 30000
+    },
+    {
+        "id": 4,
+        "name": "Silvia",
+        "age": 50,
+        "salary": 40000
+    }
+]
 ```
 
 ### 3. HTTP Get Response when token expires
 ```shell
-curl -X GET "http://localhost:8080/SpringSecurityOAuth2Example/user/?access_token=390d255e-c109-4995-9f4b-1e07c7adede2"
+curl -H "Accept:application/json" \
+-X GET "http://localhost:8080/SpringSecurityOAuth2Example/user/\
+?access_token=390d255e-c109-4995-9f4b-1e07c7adede2"
 ```
 
 Response:
 ```
-<InvalidTokenException xmlns="">
-    <error>invalid_token</error>
-    <error_description>Access token expired: 390d255e-c109-4995-9f4b-1e07c7adede2</error_description>
-</InvalidTokenException>
+{
+    "error": "invalid_token",
+    "error_description": "Invalid access token: dacd32c7-d8da-4136-b05c-2212dceafa2c"
+}
 ```
 
 ### 4. Request a token using refresh token
 ``` shell
-curl -H "Authorization:Basic bXktdHJ1c3RlZC1jbGllbnQ6c2VjcmV0" -X POST "http://localhost:8080/SpringSecurityOAuth2Example/oauth/token?grant_type=refresh_token&refresh_token=033c5691-4c28-4131-b91f-edb58fc84a34"
+curl -H "Authorization:Basic bXktdHJ1c3RlZC1jbGllbnQ6c2VjcmV0" \
+-H "Accept:application/json" \
+-X POST "http://localhost:8080/SpringSecurityOAuth2Example/oauth/token\
+?grant_type=refresh_token&refresh_token=033c5691-4c28-4131-b91f-edb58fc84a34"
 ```
 
 Response
 ```
-<DefaultOAuth2AccessToken xmlns="">
-    <access_token>9e8d3eb1-89d8-4120-b1c3-fec60f05adb5</access_token>
-    <token_type>bearer</token_type>
-    <refresh_token>033c5691-4c28-4131-b91f-edb58fc84a34</refresh_token>
-    <expires_in>119</expires_in>
-    <scope>read write trust</scope>
-</DefaultOAuth2AccessToken>
+{
+    "access_token": "d5337e4a-7dcc-4f47-9569-6867b7e78677",
+    "token_type": "bearer",
+    "refresh_token": "e77b0081-5881-4978-8d03-f8d0af33fdf6",
+    "expires_in": 119,
+    "scope": "read write trust"
+}
 ```
