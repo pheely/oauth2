@@ -15,7 +15,7 @@ curl -H "Authorization:Basic bXktdHJ1c3RlZC1jbGllbnQ6c2VjcmV0" \
 Credential for basic authentication: Username: my-trusted-client; Password: secret
 
 Response should be something like:
-```json
+```python
 {
     "access_token": "363cb911-b63c-4f29-83f3-a59d9ac5470f",
     "token_type": "bearer",
@@ -33,7 +33,7 @@ curl -H "Accept:application/json" \
 ```
 
 Response:
-```
+```python
 [
     {
         "id": 1,
@@ -70,7 +70,7 @@ curl -H "Accept:application/json" \
 ```
 
 Response:
-```
+```python
 {
     "error": "invalid_token",
     "error_description": "Invalid access token: dacd32c7-d8da-4136-b05c-2212dceafa2c"
@@ -86,7 +86,7 @@ curl -H "Authorization:Basic bXktdHJ1c3RlZC1jbGllbnQ6c2VjcmV0" \
 ```
 
 Response
-```
+```python
 {
     "access_token": "d5337e4a-7dcc-4f47-9569-6867b7e78677",
     "token_type": "bearer",
