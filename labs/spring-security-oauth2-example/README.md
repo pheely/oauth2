@@ -6,7 +6,10 @@ Link [http://websystique.com/spring-security/secure-spring-rest-api-using-oauth2
 
 ### 1. Request a token
 ```shell
-curl -H "Authorization:Basic bXktdHJ1c3RlZC1jbGllbnQ6c2VjcmV0" -X POST "http://localhost:8080/SpringSecurityOAuth2Example/oauth/token?grant_type=password&username=bill&password=abc123"
+curl -H "Authorization:Basic bXktdHJ1c3RlZC1jbGllbnQ6c2VjcmV0" \
+-H "Accept:application/json" \
+-X POST "http://localhost:8080/SpringSecurityOAuth2Example/oauth/token?grant_type=password&username=bill&password=abc123"
+
 ```
 Credential for basic authentication
 
@@ -15,13 +18,13 @@ Password: secret
 
 Response should be something like:
 ```
-<DefaultOAuth2AccessToken xmlns="">
-    <access_token>390d255e-c109-4995-9f4b-1e07c7adede2</access_token>
-    <token_type>bearer</token_type>
-    <refresh_token>ba13f959-6253-48b2-8d0f-0701e8e59295</refresh_token>
-    <expires_in>119</expires_in>
-    <scope>read write trust</scope>
-</DefaultOAuth2AccessToken>
+{
+    "access_token": "363cb911-b63c-4f29-83f3-a59d9ac5470f",
+    "token_type": "bearer",
+    "refresh_token": "c0780381-3481-4b3a-9b0c-56ffe3687d79",
+    "expires_in": 119,
+    "scope": "read write trust"
+}
 ```
 
 ### 2. Call Rest service
