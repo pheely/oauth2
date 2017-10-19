@@ -15,7 +15,7 @@ curl -H "Authorization:Basic bXktdHJ1c3RlZC1jbGllbnQ6c2VjcmV0" \
 Credential for basic authentication: Username: my-trusted-client; Password: secret
 
 Response should be something like:
-```
+```json
 {
     "access_token": "363cb911-b63c-4f29-83f3-a59d9ac5470f",
     "token_type": "bearer",
